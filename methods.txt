@@ -1,0 +1,4 @@
+1) passw hashing bcryptjs
+
+1) trim pass
+2) min values in user schema

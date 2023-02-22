@@ -1,0 +1,8 @@
+{
+    "name":"john",
+    "email":"himanshu@a.com",
+    "work":"web dev",
+    "phone":123,
+    "password":"himanshu",
+    "cpassword":"himanshu"
+}
