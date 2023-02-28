@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -47,6 +48,7 @@ router.post("/register", async (req, res) => {
 router.post("/signin", async (req, res) => {
   // console.log(req.body);
   try {
+    let token;
     const { email, password } = req.body; // if any one of the fields is not entered while login
     if (!email || !password) {
       return res.status(400).json({ error: "fill the data" });
@@ -56,14 +58,27 @@ router.post("/signin", async (req, res) => {
 
     console.log(userLogin);
 
-    if (userLogin) { // if matching email is found
+    if (userLogin) { 
+      // if matching email is found
       const isMatch = await bcrypt.compare(password, userLogin.password);
-      if (!isMatch) { // also checking if passwords matching
+
+      token = await userLogin.generateAuthToken();
+      console.log(token);
+
+      //storing token in cookie
+      res.cookie("jwtoken", token, {
+        expires: new Date(Date.now() + 25892000000), //30 days
+        httpOnly: true, //now we are not secure, so it should work on http only also
+      });
+
+      if (!isMatch) {
+        // also checking if passwords matching
         res.status(400).json({ error: "invalid ceredential: password" });
       } else {
         res.json({ message: "user signin successfull" });
       }
-    } else {  // email doesnt match
+    } else {
+      // email doesnt match
       res.status(400).json({ message: "invalid ceredential: email" });
     }
   } catch (err) {
