@@ -1,3 +1,6 @@
 1) passw hashing bcryptjs
 2) jwt 
 
+to do
+1) timeline tabs in about
+2) routing to error page
