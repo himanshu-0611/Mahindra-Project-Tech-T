@@ -1,3 +1,0 @@
-username, pass: himanshu
-
-mongodb+srv://himanshu:<password>@cluster0.v8b2snq.mongodb.net/?retryWrites=true&w=majority
