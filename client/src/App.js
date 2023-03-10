@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom"; // when we click on about from nav, which route to show, 'show only about page'
+import 'bootstrap/dist/css/bootstrap.css';
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";

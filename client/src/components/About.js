@@ -27,7 +27,7 @@ function About() {
                       aria-selected="true"
                       aria-controls="panel-1"
                       id="tab-1"
-                      tabindex="0"
+                      tabIndex="0"
                     >
                       About
                     </a>
@@ -37,7 +37,7 @@ function About() {
                       aria-selected="false"
                       aria-controls="panel-2"
                       id="tab-2"
-                      tabindex="-1"
+                      tabIndex="-1"
                     >
                       Timeline
                     </a>
@@ -93,7 +93,7 @@ function About() {
                   className="tab-pane fade show active"
                   id="panel-1"
                   role="tabpanel"
-                  tabindex="0"
+                  tabIndex="0"
                   aria-labelledby="tab-1"
                 >
                   <div className="row">
@@ -141,7 +141,7 @@ function About() {
                   className="tab-pane fade"
                   id="panel-2"
                   role="tabpanel"
-                  tabindex="0"
+                  tabIndex="0"
                   aria-labelledby="tab-2"
                   hidden
                 >
