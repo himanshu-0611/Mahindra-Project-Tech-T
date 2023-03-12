@@ -28,6 +28,7 @@ function About() {
                       aria-controls="panel-1"
                       id="tab-1"
                       tabIndex="0"
+                      href="http://google.com"
                     >
                       About
                     </a>
@@ -38,6 +39,8 @@ function About() {
                       aria-controls="panel-2"
                       id="tab-2"
                       tabIndex="-1"
+                      href="http://google.com"
+                      rel="noopener noreferrer"
                     >
                       Timeline
                     </a>
@@ -59,27 +62,27 @@ function About() {
             <div className="col-md-4">
               <div className="profile-work">
                 <p>Work Link</p>
-                <a href="http://google.com" target="_blank">
+                <a href="http://google.com" target="_blank" rel="noreferrer">
                   YouTube
                 </a>
                 <br />
-                <a href="http://google.com" target="_blank">
+                <a href="http://google.com" target="_blank" rel="noreferrer">
                   YouTube
                 </a>
                 <br />
-                <a href="http://google.com" target="_blank">
+                <a href="http://google.com" target="_blank" rel="noreferrer">
                   YouTube
                 </a>
                 <br />
-                <a href="http://google.com" target="_blank">
+                <a href="http://google.com" target="_blank" rel="noreferrer">
                   YouTube
                 </a>
                 <br />
-                <a href="http://google.com" target="_blank">
+                <a href="http://google.com" target="_blank" rel="noreferrer">
                   YouTube
                 </a>
                 <br />
-                <a href="http://google.com" target="_blank">
+                <a href="http://google.com" target="_blank" rel="noreferrer">
                   YouTube
                 </a>
                 <br />

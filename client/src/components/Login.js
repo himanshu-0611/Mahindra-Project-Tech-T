@@ -1,8 +1,33 @@
-import React from 'react'
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const data = res.json();
+    if(res.status === 400 || !data) {
+      window.alert("Invalid credential")
+    } else {
+      window.alert("Login success")
+      navigate("/")
+    }
+  };
   return (
     <div>
       <section className="signin">
@@ -19,7 +44,7 @@ function Login() {
             <div className="signin-form">
               <h2>Login</h2>
             </div>
-            <form className="register-form" id="register-form">
+            <form method="POST" className="register-form" id="register-form">
               <div className="form-group">
                 <label htmlFor="email">Email ID</label>
                 <input
@@ -28,6 +53,8 @@ function Login() {
                   id="email"
                   autoComplete="off"
                   placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -38,6 +65,8 @@ function Login() {
                   id="password"
                   autoComplete="off"
                   placeholder="Enter Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="form-group form-buttom">
@@ -47,6 +76,7 @@ function Login() {
                   id="signin"
                   className="form-submit"
                   value="Login"
+                  onClick={loginUser}
                 />
               </div>
             </form>
@@ -57,4 +87,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Login;

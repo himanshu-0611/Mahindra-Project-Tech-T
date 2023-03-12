@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate, useHistory } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 function Signup() {
-  const history = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -24,9 +23,9 @@ function Signup() {
   const PostData = async (e) => {
     e.preventDefault(); // avoid automatic reload behaviour
     const { name, email, phone, work, password, cpassword } = user; // object destructuring
-    const res = await fetch("/register", {
+    const res = await fetch("http://localhost:5000/register", {
       method: "POST",
-      header: {
+      headers: {
         "Content-type": "application/json",
       },
       //data has to be sent in form on string to server, it doesn't understand json
@@ -49,6 +48,14 @@ function Signup() {
       console.log(data)
       window.alert("Reg Success");
       console.log("Reg Success");
+      setUser({
+        name: "",
+        email: "",
+        phone: "",
+        work: "",
+        password: "",
+        cpassword: "",
+      });
       //goes to login page when reg success
       // history.push("/login");
     }

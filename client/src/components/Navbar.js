@@ -6,12 +6,12 @@ function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="http://google.com">
           Navbar
         </a>
         <button
           className="navbar-toggler"
-        type="button"
+          type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
