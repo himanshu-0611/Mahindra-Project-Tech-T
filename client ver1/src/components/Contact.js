@@ -1,6 +1,35 @@
 import React from "react";
+import { useEffect, useState } from "react";
 
 function Contact() {
+  const [userData, setUserData] = useState({});
+  const userContact = async () => {
+    try {
+      const res = await fetch("/getdata", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include", //so that cookies will reach backend
+      });
+      const data = await res.json();
+      console.log(data);
+      setUserData(data);
+      if (res.status !== 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      // means user is not logged in
+      console.log(err);
+    }
+  };
+
+  // the moment we first time open this page, useEffect is called
+  useEffect(() => {
+    userContact();
+  }, []);
   return (
     <>
       <div className="contact_info mt-4">

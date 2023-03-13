@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -57,7 +58,7 @@ function Signup() {
         cpassword: "",
       });
       //goes to login page when reg success
-      // history.push("/login");
+      navigate("/login");
     }
   };
 

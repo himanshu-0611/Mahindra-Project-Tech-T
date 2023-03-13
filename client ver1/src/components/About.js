@@ -1,8 +1,9 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function About() {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
   const callAboutPage = async () => {
     try {
       const res = await fetch("/about", {
@@ -15,7 +16,7 @@ function About() {
       });
       const data = await res.json();
       console.log(data);
-
+      setUserData(data);
       if (res.status !== 200) {
         const error = new Error(res.error);
         throw error;
@@ -38,13 +39,13 @@ function About() {
           <div className="row">
             <div className="col-md-4">
               <div className="profile-img">
-                <img src="./about-profile.jpeg" alt="" width="130px" />
+                <img src={userData.name === "Himanshu Agarkar" ? "../about-profile.jpeg" : "https://cdn-icons-png.flaticon.com/128/1144/1144760.png"} alt="" width="130px" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="profile-head">
-                <h5>Himanshu Agarkar</h5>
-                <h6>Data Engineer</h6>
+                <h5>{userData.name}</h5>
+                <h6>{userData.work}</h6>
                 <p className="profile-rating mt-3 mb-5">
                   Rank <span> 1/10 </span>
                 </p>
@@ -142,7 +143,23 @@ function About() {
                       <label>Name</label>
                     </div>
                     <div className="col-md-6">
-                      <label htmlFor="User ID">Himanshu Agarkar</label>
+                      <label htmlFor="User ID">{userData.name}</label>
+                    </div>
+                  </div>
+                  <div className="row mt-3">
+                    <div className="col-md-6">
+                      <label>E Mail ID</label>
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="User ID">{userData.email}</label>
+                    </div>
+                  </div>
+                  <div className="row mt-3">
+                    <div className="col-md-6">
+                      <label>Work</label>
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="User ID">{userData.work}</label>
                     </div>
                   </div>
                   <div className="row mt-3">
@@ -150,23 +167,7 @@ function About() {
                       <label>Name</label>
                     </div>
                     <div className="col-md-6">
-                      <label htmlFor="User ID">Himanshu Agarkar</label>
-                    </div>
-                  </div>
-                  <div className="row mt-3">
-                    <div className="col-md-6">
-                      <label>Name</label>
-                    </div>
-                    <div className="col-md-6">
-                      <label htmlFor="User ID">Himanshu Agarkar</label>
-                    </div>
-                  </div>
-                  <div className="row mt-3">
-                    <div className="col-md-6">
-                      <label>Name</label>
-                    </div>
-                    <div className="col-md-6">
-                      <label htmlFor="User ID">Himanshu Agarkar</label>
+                      <label htmlFor="User ID">{userData.name}</label>
                     </div>
                   </div>
                 </div>

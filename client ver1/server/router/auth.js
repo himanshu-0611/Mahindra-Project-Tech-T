@@ -88,10 +88,16 @@ router.post("/signin", async (req, res) => {
 });
 
 // about us page
-
 router.get("/about", authenticate, (req, res) => {
   console.log("Hello in /about")
   res.send(req.rootUser);
 });
+
+
+//get user data from contact and home page
+router.get('/getdata', authenticate, (req, res) => {
+    console.log("Hello in /about");
+    res.send(req.rootUser);
+})
 
 module.exports = router;
