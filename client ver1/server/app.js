@@ -25,18 +25,14 @@ const PORT = process.env.PORT;
 // Middleware
 
 
-const middleware = (req, res, next) => {
-  console.log(`Hello my middleware`);
-  next();
-};
 
 // app.get("/", (req, res) => {
 //   res.send(`Hello world from server auth.js`);
 // });
 
-app.get("/about", middleware, (req, res) => {
-  res.send(`Hello about from server`);
-});
+// app.get("/about", middleware, (req, res) => {
+//   res.send(`Hello about from server`);
+// });
 
 app.get("/contact", (req, res) => { 
   res.cookie('Test', 'himanshu') //(name of cookie, value)

@@ -20,7 +20,7 @@ function Login() {
         password,
       }),
     });
-    const data = res.json();
+    const data = await res.json();
     if(res.status === 400 || !data) {
       window.alert("Invalid credential")
     } else {

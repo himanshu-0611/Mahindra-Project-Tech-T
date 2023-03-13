@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const authenticate = require("../middleware/authenticate")
 
 require("../db/conn");
 const User = require("../model/userSchema");
@@ -60,7 +61,7 @@ router.post("/signin", async (req, res) => {
 
     if (userLogin) { 
       // if matching email is found
-      const isMatch = await bcrypt.compare(password, userLogin.password);
+      const isMatch = bcrypt.compare(password, userLogin.password);
 
       token = await userLogin.generateAuthToken();
       console.log(token);
@@ -84,6 +85,13 @@ router.post("/signin", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+// about us page
+
+router.get("/about", authenticate, (req, res) => {
+  console.log("Hello in /about")
+  res.send(req.rootUser);
 });
 
 module.exports = router;
