@@ -2,20 +2,23 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 function Contact() {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({name:"", email:"", work:"", phone:""});
   const userContact = async () => {
     try {
       const res = await fetch("/getdata", {
         method: "GET",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        credentials: "include", //so that cookies will reach backend
       });
       const data = await res.json();
       console.log(data);
-      setUserData(data);
+      setUserData({
+        ...userData,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      });
       if (res.status !== 200) {
         const error = new Error(res.error);
         throw error;
@@ -30,6 +33,14 @@ function Contact() {
   useEffect(() => {
     userContact();
   }, []);
+
+  //we are storing data in state
+  const handleInputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUserData({...userData, name:userData.name, email:userData.email, phone:userData.phone})
+  }
   return (
     <>
       <div className="contact_info mt-4">
@@ -74,25 +85,31 @@ function Contact() {
                       id="contact_form_name"
                       className="contact_form_name input_field"
                       placeholder="Your Name"
-                      required="true"
+                      required={true}
+                      value={userData.name || ""}
+                      onChange={handleInputs}
                     />
                     <input
                       type="email"
                       id="contact_form_email"
                       className="contact_form_name input_field"
                       placeholder="Your Email"
-                      required="true"
+                      required={true}
+                      value={userData.email || ""}
+                      onChange={handleInputs}
                     />
                     <input
                       type="number"
                       id="contact_form_phone"
                       className="contact_form_phone input_field"
                       placeholder="Your Phone Number"
-                      required="true"
+                      required={true}
+                      value={userData.phone || ""}
+                      onChange={handleInputs}
                     />
                   </div>
                   <div className="contact_form_text mt-4">
-                    <textarea className="text_field contact_form_message" name="" placeholder="Message" cols="109" rows="10"></textarea>
+                    <textarea className="text_field contact_form_message" name="" placeholder="Message" cols="109" rows="10" value={userData.message} onChange={handleInputs}></textarea>
                   </div>
                   <div className="contact-form-button mt-4">
                     <button type="submit" className="button contact_submit_button">Send Message</button>

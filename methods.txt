@@ -1,5 +1,5 @@
 1) passw hashing bcryptjs
-2) jwt 
+2) jwt, cookies
 
 to do
 1) timeline tabs in about
